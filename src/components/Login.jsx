@@ -1,17 +1,19 @@
-import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
+  const {login} = useLogin();
   const MySwal = withReactContent(Swal);
-  const navigate = useNavigate();
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    console.log(email, password);
 
     const regexEmail =
       // eslint-disable-next-line
@@ -19,39 +21,32 @@ const Login = () => {
     if (email === "" || password === "") {
       MySwal.fire({
         icon: "warning",
-        title: <p>Los campos no pueden estar vacíos</p>,
+        title: <p>Fields can't be empty</p>,
+        confirmButtonColor: "#000"
       });
       return;
     }
     if (email !== "" && !regexEmail.test(email)) {
       MySwal.fire({
         icon: "warning",
-        title: <p>No ha ingresado un email válido</p>,
+        title: <p>You entered an invalid email</p>,
+        confirmButtonColor: "#000"
       });
       return;
     }
     if (email !== "challenge@alkemy.org" || password !== "react") {
       MySwal.fire({
         icon: "warning",
-        title: <p>Credenciales inválidas</p>,
+        title: <p>Invalid credentials</p>,
+        confirmButtonColor: "#000"
       });
       return;
     }
-    console.log("Ok! Estamos listos para enviar la información");
-    axios
-      .post("http://challenge-react.alkemy.org", { email, password })
-      .then((res) => {
-        MySwal.fire({
-          title: <p>Perfecto! Ingresaste correctamente</p>,
-          icon: "success",
-        });
-        const token = res.data.token;
-        localStorage.setItem("token", token);
-        navigate("/list");
-      });
+    login(email, password);
   };
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
+
   
 
   return (
@@ -61,9 +56,9 @@ const Login = () => {
       ) : (
         <form
           onSubmit={submitHandler}
-          className="d-flex flex-column gap-3 container"
+          className="d-flex flex-column gap-3 container mt-3"
         >
-          <h2>Inicia sesión</h2>
+          <h2>Log in</h2>
           <label className="d-flex flex-column">
             <span>Email</span>
             <input type="text" name="email" />
@@ -73,7 +68,7 @@ const Login = () => {
             <input type="password" name="password" />
           </label>
           <Button type="submit" variant="dark">
-            Ingresar
+            Log in
           </Button>
         </form>
       )}

@@ -1,15 +1,23 @@
-import { useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { Navigate } from "react-router-dom";
+
+//Hooks
+import { useEffect, useContext } from "react";
+import useMovies from "../hooks/useMovies";
+
+//Components
 import ItemCard from "./ItemCard";
+import LoadSpinner from "./LoadSpinner";
+
+//Bootstrap
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import LoadSpinner from "./LoadSpinner";
 
 const List = () => {
-  const {loading, movies, getMovies} = useContext(GlobalContext);
-  const token = localStorage.getItem("token");
+  const {loading} = useContext(GlobalContext);
+  const {movies, getMovies} = useMovies();
+  const token = localStorage.getItem('token');
   
 
   useEffect(() => {
@@ -25,11 +33,11 @@ const List = () => {
         <LoadSpinner />
       ) : (
         <>
-        <Container fluid className="p-5">
+        <Container fluid className="px-5 mt-3">
           <h2 className="text-center">New Movies</h2>
           <Row>
             {movies.map((movie) => (
-              <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
+              <Col key={movie.id} xs={12} sm={6} md={4} lg={3}  >
                 <ItemCard movie={movie} />
               </Col>
             ))}
