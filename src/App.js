@@ -1,15 +1,21 @@
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
-import Listado from "./components/Listado";
+import List from "./components/List";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <>
+      <Header />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/listado" element={<Listado />} />
+        <Route path="/list" element={<List />} />
       </Routes>
+      <Footer />
     </>
   );
 }
