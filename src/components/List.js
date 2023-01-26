@@ -1,27 +1,28 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 import ItemCard from "./ItemCard";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import LoadSpinner from "./LoadSpinner";
 
 const List = () => {
+  const {loading, movies, getMovies} = useContext(GlobalContext);
   const token = localStorage.getItem("token");
-  const [movies, setMovies] = useState([]);
+  
 
   useEffect(() => {
-    const endPoint =
-      "https://api.themoviedb.org/3/discover/movie?api_key=bf6d1d72665456cf14827b416c3d63f1&language=en-US&page=1";
-    axios
-    .get(endPoint)
-    .then((response) => setMovies(response.data.results));
-  }, [setMovies]);
+    getMovies()
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
       {!token ? (
         <Navigate to="/" />
+      ) : loading ? (
+        <LoadSpinner />
       ) : (
         <>
         <Container fluid className="p-5">
