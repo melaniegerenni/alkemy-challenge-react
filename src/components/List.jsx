@@ -17,7 +17,7 @@ import Col from "react-bootstrap/Col";
 const List = () => {
   const {loading} = useContext(GlobalContext);
   const {movies, getMovies} = useMovies();
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   
 
   useEffect(() => {

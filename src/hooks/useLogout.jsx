@@ -11,12 +11,12 @@ const useLogout = () => {
       title: "Are you sure you want to log out?",
       icon: "question",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#000",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/");
       }
     });

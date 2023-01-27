@@ -45,9 +45,7 @@ const Login = () => {
     login(email, password);
   };
 
-  const token = localStorage.getItem('token');
-
-  
+  const token = sessionStorage.getItem('token');
 
   return (
     <>

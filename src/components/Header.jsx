@@ -1,10 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FaReact } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 
 const Header = () => {
   const {logout} = useLogout();
+  const token = sessionStorage.getItem('token');
+  const navigate = useNavigate();
 
   return (
     <header className="bg-warning d-flex align-items-center justify-content-between">
@@ -34,9 +36,9 @@ const Header = () => {
       <Button
         variant="dark"
         className="mx-3"
-        onClick={logout}
+        onClick={token ? logout : () => navigate('/')}
       >
-        Log out
+        {token ? "Log out" : "Log in"}
       </Button>
     </header>
   );

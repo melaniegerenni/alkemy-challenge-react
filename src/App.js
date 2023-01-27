@@ -4,9 +4,10 @@ import Login from "./components/Login";
 import List from "./components/List";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MovieDetail from "./components/MovieDetail";
+import MovieDetailContainer from "./components/MovieDetailContainer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/list" element={<List />} />
-        <Route path="/detail/:movieID" element={<MovieDetail />} />
+        <Route path="/detail/:movieID" element={<MovieDetailContainer />} />
       </Routes>
       <Footer />
     </>

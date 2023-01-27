@@ -24,7 +24,7 @@ const useLogin = () => {
 
       });
       const token = response.data.token;
-      localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
       setLoading(false);
       navigate("/list");
     } catch (error) {
