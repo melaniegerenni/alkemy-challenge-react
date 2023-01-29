@@ -1,12 +1,6 @@
 import { useEffect, useContext} from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import ItemCard from "./ItemCard";
-
-//Bootstrap
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
+import List from "./List";
 
 const Favorites = () => {
     const {favs} = useContext(GlobalContext)
@@ -15,18 +9,9 @@ const Favorites = () => {
   }, [favs]);
 
   return (
-    <div>
-      <Container fluid className="px-5 mt-3">
-        <h2 className="text-center">My favorite movies</h2>
-        <Row>
-          {favs.map((movie) => (
-            <Col key={movie.id} xs={12} sm={6} md={4} lg={3}>
-              <ItemCard movie={movie} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
+    <>
+    {favs && <List headerTxt="My favorite movies" noMsg="No favorites movies yet" moviesArray={favs} />}
+    </>
   );
 };
 

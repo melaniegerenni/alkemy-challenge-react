@@ -32,7 +32,7 @@ const Header = () => {
                 to="/list"
                 className="text-dark text-decoration-none list-inline-item"
               >
-                List
+                Movies
               </NavLink>
             </li>
 
@@ -41,7 +41,7 @@ const Header = () => {
                 to="/favorites"
                 className="text-dark text-decoration-none list-inline-item"
               >
-                Favs
+                Favorites
               </NavLink>
               {favs.length > 0 && (
                 <Badge

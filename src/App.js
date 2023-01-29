@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/Login";
-import List from "./components/List";
+import MovieList from "./components/MovieList";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import MovieDetailContainer from "./components/MovieDetailContainer";
@@ -18,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/list" element={<List />} />
+        <Route path="/list" element={<MovieList />} />
         <Route path="/detail/:movieID" element={<MovieDetailContainer />} />
         <Route path="/results/:keyword" element={<SearchResults />} />
         <Route path="/favorites" element={<Favorites />} />
