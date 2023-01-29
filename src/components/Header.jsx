@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FaReact } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import Search from "./Search";
+import Badge from "react-bootstrap/Badge";
 
 const Header = () => {
+  const { favs } = useContext(GlobalContext);
   const { logout } = useLogout();
   const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
@@ -30,6 +34,24 @@ const Header = () => {
               >
                 List
               </NavLink>
+            </li>
+
+            <li className="position-relative">
+              <NavLink
+                to="/favorites"
+                className="text-dark text-decoration-none list-inline-item"
+              >
+                Favs
+              </NavLink>
+              {favs.length > 0 && (
+                <Badge
+                  pill
+                  bg="success"
+                  className="position-absolute top-0 start-100 translate-middle"
+                >
+                  {favs.length}
+                </Badge>
+              )}
             </li>
           </ul>
         </nav>

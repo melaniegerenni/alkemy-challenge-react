@@ -20,6 +20,7 @@ const SearchResults = () => {
 
   useEffect(() => {
     getResults(keyword);
+    // eslint-disable-next-line
   }, [keyword]);
 
   return (
