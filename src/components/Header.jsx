@@ -2,10 +2,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useLogout from "../hooks/useLogout";
 import { FaReact } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
+import Search from "./Search";
 
 const Header = () => {
-  const {logout} = useLogout();
-  const token = sessionStorage.getItem('token');
+  const { logout } = useLogout();
+  const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
 
   return (
@@ -33,13 +34,16 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-      <Button
-        variant="dark"
-        className="mx-3"
-        onClick={token ? logout : () => navigate('/')}
-      >
-        {token ? "Log out" : "Log in"}
-      </Button>
+      <div className="d-flex gap-5 align-items-center">
+        <Search />
+        <Button
+          variant="dark"
+          className="mx-3"
+          onClick={token ? logout : () => navigate("/")}
+        >
+          {token ? "Log out" : "Log in"}
+        </Button>
+      </div>
     </header>
   );
 };

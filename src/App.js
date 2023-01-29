@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import MovieDetailContainer from "./components/MovieDetailContainer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SearchResults from "./components/SearchResults";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/list" element={<List />} />
         <Route path="/detail/:movieID" element={<MovieDetailContainer />} />
+        <Route path="/results/:keyword" element={<SearchResults />} />
       </Routes>
       <Footer />
     </>
